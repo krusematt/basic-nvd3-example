@@ -1,0 +1,41 @@
+<div class="">
+  <h2>NVD3 Chart Example</h2>
+  <div class="lead row">
+    <form novalidate class="simple-form form-group">
+      <div class="row urlContainer">
+        <div class="col-sm-1">
+          <label for="url">URL:</label>
+        </div>
+        <div class="col-sm-11">
+          <input class="form-control" id="url" type="text" ng-model="endpoint" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" ng-if="params.length > 0">
+          <label>URL Get Parameters</label>
+          <div class="row" ng-repeat="param in params">
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="param.key" />
+            </div>
+            <div class="col-sm-1">=</div>
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="param.value" />
+            </div>
+            <div class="col-sm-1"><button class="btn btn-danger" ng-click="removeParam(param)">X</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 center-block">
+          <input class="btn btn-default" type="button" ng-click="addParam()" value="+ Add GET Param" />
+        </div>
+      </div>
+    </form>
+    <pre>Fetching data from:  {{endpoint}}<span ng-repeat="param in params"><span ng-if="$first">?</span><span ng-if="!$first">&</span>{{param.key}}={{param.value}}</span> </pre>
+  </div>
+  <p><a class="btn btn-lg btn-success" ng-click="generate()">Generate Chart!<span class="glyphicon glyphicon-ok"></span></a></p>
+</div>
+
+<div id="chart1">
+  <svg></svg>
+</div>
