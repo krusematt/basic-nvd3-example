@@ -8,16 +8,28 @@
  * Factory in the exampleApp.
  */
 angular.module('exampleApp')
-  .factory('dataService', function () {
-    // Service logic
-    // ...
+  .factory('DataService', DataService);
 
-    var meaningOfLife = 42;
+DataService.$inject = ['$http'];
+function DataService($http) {
+  return {
+    getChartData: getChartData
+  };
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
+  function getChartData(endpoint, params) {
+    return $http.get(endpoint, 'http://64.137.170.243/v1/data',
+      {method:"GET",
+      params: params})
+      .then(getChartDataComplete)
+      .catch(getChartDataFailed);
+
+    function getChartDataComplete(response) {
+      return response.data.results;
+    }
+
+    function getChartDataFailed(error) {
+      console.error('XHR Failed for chartData.' + error.data);
+      return false;
+    }
+  }
+}

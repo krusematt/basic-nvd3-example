@@ -1,23 +1,37 @@
-<div class="jumbotron">
-  <h1>'Allo, 'Allo!</h1>
-  <p class="lead">
-    <img src="images/yeoman.png" alt="I'm Yeoman"><br>
-    Always a pleasure scaffolding your apps.
-  </p>
-  <p><a class="btn btn-lg btn-success" ng-href="#/">Splendid!<span class="glyphicon glyphicon-ok"></span></a></p>
+<div class="">
+  <h2>NVD3 Chart Example</h2>
+  <div class="lead row">
+    <form novalidate class="simple-form form-group">
+      <div class="row urlContainer">
+        <div class="col-sm-1">
+          <label for="url">URL:</label>
+        </div>
+        <div class="col-sm-11">
+          <input class="form-control" id="url" type="text" ng-model="endpoint" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" ng-if="params.length > 0">
+          <label>URL Get Parameters</label>
+          <div class="row" ng-repeat="param in params">
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="param.key" />
+            </div>
+            <div class="col-sm-1">=</div>
+            <div class="col-sm-5">
+              <input class="form-control" type="text" ng-model="param.value" />
+            </div>
+            <div class="col-sm-1"><button class="btn btn-danger" ng-click="removeParam(param)">X</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 center-block">
+          <input class="btn btn-default" type="button" ng-click="addParam()" value="+ Add GET Param" />
+        </div>
+      </div>
+    </form>
+    <pre>Fetching data from:  {{endpoint}}<span ng-repeat="param in params"><span ng-if="$first">?</span><span ng-if="!$first">&</span>{{param.key}}={{param.value}}</span> </pre>
+  </div>
+  <p><a class="btn btn-lg btn-success" ng-click="generate()">Generate Chart!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
-
-<div class="row marketing">
-  <h4>HTML5 Boilerplate</h4>
-  <p>
-    HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
-  </p>
-
-  <h4>Angular</h4>
-  <p>
-    AngularJS is a toolset for building the framework most suited to your application development.
-  </p>
-
-  <h4>Karma</h4>
-  <p>Spectacular Test Runner for JavaScript.</p>
-</div>-
