@@ -24,7 +24,7 @@ function DataService($http) {
       .catch(getChartDataFailed);
 
     function getChartDataComplete(response) {
-      return response.data.results;
+      return response.data;
     }
 
     function getChartDataFailed(error) {
