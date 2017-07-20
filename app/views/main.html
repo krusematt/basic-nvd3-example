@@ -36,6 +36,4 @@
   <p><a class="btn btn-lg btn-success" ng-click="generate()">Generate Chart!<span class="glyphicon glyphicon-ok"></span></a></p>
 </div>
 
-<div id="chart1">
-  <svg></svg>
-</div>
+<time-series-chart ng-if="chartData.length > 0" chartData="chartData"></time-series-chart>

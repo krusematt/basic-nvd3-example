@@ -17,18 +17,30 @@ function DataService($http) {
   };
 
   function getChartData(endpoint, params) {
-    return $http.get(endpoint, 'http://64.137.170.243/v1/data',
+    return $http.get(endpoint,
       {method:"GET",
-      params: params})
+      params: formatParams(params)})
       .then(getChartDataComplete)
       .catch(getChartDataFailed);
 
+    function formatParams(params) {
+      var formattedParams = {};
+      _.each(params, function(param) {
+        formattedParams[param.key]=param.value;
+      });
+      console.log('formattedparams', formattedParams);
+      return formattedParams;
+    }
+
+
+
     function getChartDataComplete(response) {
+
       return response.data;
     }
 
     function getChartDataFailed(error) {
-      console.error('XHR Failed for chartData.' + error.data);
+      console.error('XHR Failed for chartData.', error);
       return false;
     }
   }
